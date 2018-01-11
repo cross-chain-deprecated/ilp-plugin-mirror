@@ -1,24 +1,25 @@
-class Plugin {
-  constructor (helpers, mirror) {
-    this.helpers = helpers
+const EventEmitter2 = require('eventemitter2')
+
+class Plugin extends EventEmitter2 {
+  constructor (opts, mirror) {
     if (!mirror) {
-      mirror = new Plugin(helpers, this)
+      mirror = new Plugin(opts, this)
     }
     this.mirror = mirror
     this.onceConnected = new Promise(resolve => { this.resolveOnceConnected = resolve })
   }
-  getPeer () { return this.mirror } 
 
-  connect () { this._connected = true; this.resolveOnceConnected() }
-  disconnect () { this._connected = false }
+  connect () { this._connected = true; this.resolveOnceConnected(); this.emit('connect') }
+  disconnect () { this._connected = false; this.emit('disconnect') }
   isConnected () { return this._connected }
 
-  sendData (packet) { return this.mirror._dataHandler(packet) }
-  sendMoney (packet) { return this.mirror._moneyHandler(packet) }
+  sendData (data) { return Promise.resolve(this.mirror._dataHandler && this.mirror._dataHandler(data)) }
   registerDataHandler (handler) { this._dataHandler = handler }
+  deregisterDataHandler (handler) { delete this._dataHandler }
+
+  sendMoney (amount) { return Promise.resolve(this.mirror._moneyHandler && this.mirror._moneyHandler(amount)) }
   registerMoneyHandler (handler) { this._moneyHandler = handler }
+  deregisterMoneyHandler (handler) { delete this._moneyHandler }
 }
-
 Plugin.version = 2
-
 module.exports = Plugin

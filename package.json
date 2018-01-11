@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/michielbdejong/ilp-plugin-mirror/issues"
   },
-  "homepage": "https://github.com/michielbdejong/ilp-plugin-mirror#readme"
+  "homepage": "https://github.com/michielbdejong/ilp-plugin-mirror#readme",
+  "dependencies": {
+    "eventemitter2": "^5.0.1"
+  }
 }
