@@ -7,10 +7,9 @@ class Plugin extends EventEmitter2 {
       mirror = new Plugin(opts, this)
     }
     this.mirror = mirror
-    this.onceConnected = new Promise(resolve => { this.resolveOnceConnected = resolve })
   }
 
-  connect () { this._connected = true; this.resolveOnceConnected(); this.emit('connect') }
+  connect () { this._connected = true; this.emit('connect') }
   disconnect () { this._connected = false; this.emit('disconnect') }
   isConnected () { return this._connected }
 
