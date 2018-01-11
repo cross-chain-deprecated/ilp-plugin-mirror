@@ -1,0 +1,19 @@
+{
+  "name": "ilp-plugin-mirror",
+  "version": "1.0.0",
+  "description": "Dummy LPI v2 plugin that mirrors incoming and outgoing calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michielbdejong/ilp-plugin-mirror.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michielbdejong/ilp-plugin-mirror/issues"
+  },
+  "homepage": "https://github.com/michielbdejong/ilp-plugin-mirror#readme"
+}
