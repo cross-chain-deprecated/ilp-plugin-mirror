@@ -13,11 +13,11 @@ class Plugin extends EventEmitter2 {
   disconnect () { this._connected = false; this.emit('disconnect') }
   isConnected () { return this._connected }
 
-  sendData (data) { return Promise.resolve(this.mirror._dataHandler && this.mirror._dataHandler(data)) }
+  sendData (data) { return Promise.resolve(this.mirror._dataHandler ? this.mirror._dataHandler(data) : null) }
   registerDataHandler (handler) { this._dataHandler = handler }
   deregisterDataHandler (handler) { delete this._dataHandler }
 
-  sendMoney (amount) { return Promise.resolve(this.mirror._moneyHandler && this.mirror._moneyHandler(amount)) }
+  sendMoney (amount) { return Promise.resolve(this.mirror._moneyHandler ? this.mirror._moneyHandler(amount) : null) }
   registerMoneyHandler (handler) { this._moneyHandler = handler }
   deregisterMoneyHandler (handler) { delete this._moneyHandler }
 }
