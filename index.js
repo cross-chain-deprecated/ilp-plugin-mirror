@@ -2,6 +2,7 @@ const EventEmitter2 = require('eventemitter2')
 
 class Plugin extends EventEmitter2 {
   constructor (opts, mirror) {
+    super()
     if (!mirror) {
       mirror = new Plugin(opts, this)
     }
