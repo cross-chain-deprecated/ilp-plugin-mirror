@@ -9,8 +9,8 @@ class Plugin extends EventEmitter2 {
     this.mirror = mirror
   }
 
-  connect () { this._connected = true; this.emit('connect') }
-  disconnect () { this._connected = false; this.emit('disconnect') }
+  connect () { this._connected = true; this.emit('connect'); return Promise.resolve(null) }
+  disconnect () { this._connected = false; this.emit('disconnect'); return Promise.resolve(null) }
   isConnected () { return this._connected }
 
   sendData (data) { return Promise.resolve(this.mirror._dataHandler ? this.mirror._dataHandler(data) : null) }
